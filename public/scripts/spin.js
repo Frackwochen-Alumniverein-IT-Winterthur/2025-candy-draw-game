@@ -72,7 +72,7 @@ function checkWin() {
     if (
         (reel1 === reel2 && reel2 === reel3)
     ) {
-        messageDisplay.textContent = "Gewinner";
+        messageDisplay.textContent = "Gewinner -  Zeig dein Bildshirm dem Frackmobilmeister!";
     } else {
         messageDisplay.textContent = "Probier's nochmal";
     }

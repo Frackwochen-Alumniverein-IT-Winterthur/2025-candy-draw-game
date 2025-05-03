@@ -61,49 +61,52 @@ app.use("/api", function (req, res, next) {
 app.use(json());
 
 //  gültige API-Keys
-var apiKeys = ["wbeweb", "c4game"];
+var apiKeys = ["candy"];
 
 //  unsere tolle in-memory Datenbank :)
 var data = {
-  1234567890: { demodata: "wbe is an inspiring challenge" },
-  c4state: {},
+  symbols: ["/imgs/1.png", "🍒", "🔔", "🍋", "🍉",
+    "/imgs/3.png", "⭐", "7️⃣", "🍊", "/imgs/2.png", "🍓", "🍈", "🍍"],
+  nonWinners: ["🍒", "🔔", "🍋", "🍉", "⭐", "7️⃣", "🍊", "🍓", "🍈", "🍍"],
+  players: {},
+  candy: {
+    snickers: 20,
+    kitkat: 20,
+    mars: 20
+  },
 };
 
-//  GET-Request bearbeiten
+//  GET-Requests bearbeiten
 //
-app.get("/api/data/:id", function (req, res, next) {
+app.get("/api/spin/:id", function (req, res, next) {
   var id = req.params.id;
-  var result = data[id];
+  var playerStruct = data.players.id;
+
+
 
   if (result) res.send(result);
   else next();
 });
 
+app.get("/api/candies", function (req, res, next) {
+  res.send(data.candy);
+});
+
+app.get("/api/symboles", function (req, res, next) {
+  res.send({ symboles: data.symbols });
+});
+
 //  POST-Request bearbeiten
 //
-app.post("/api/data", function (req, res, next) {
+app.post("/api/register", function (req, res, next) {
   let id = guidGenerator();
-  data[id] = req.body;
+  playerStruct = {
+    nWins: 0,
+  }
+  data.players[id] = playerStruct;
   res.send({ id });
 });
 
-//  DELETE-Request bearbeiten
-//
-app.delete("/api/data/:id", function (req, res, next) {
-  var id = req.params.id;
-  delete data[id];
-  res.sendStatus(204);
-});
-
-//  PUT-Request bearbeiten
-//
-app.put("/api/data/:id", function (req, res, next) {
-  var id = req.params.id;
-  if (data[id]) {
-    data[id] = req.body;
-    res.send(req.body);
-  } else next();
-});
 
 //  Middleware mit vier Argumenten wird zur Fehlerbehandlung verwendet
 //

@@ -21,27 +21,73 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60%;
+  height: 70%;
 }
 
-.reel {
-  display: block;
-  width: 130px;
-  height: 210px;
-  background-color: #3a3a3a;
-  border-radius: 15px;
-  overflow: hidden;
-  margin: 0 10px;
-  box-shadow: 0px 14px 15px -5px rgba(0, 0, 0, 0.3) inset,
-    1px -14px 15px -5px rgba(0, 0, 0, 0.3) inset;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  position: relative;
+@media only screen and (max-width: 360px) {
+  .reel {
+    display: block;
+    width: 25vw;
+    height: 40vh;
+    background-color: #3a3a3a;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 0 10px;
+    box-shadow: 0px 14px 15px -5px rgba(0, 0, 0, 0.3) inset,
+      1px -14px 15px -5px rgba(0, 0, 0, 0.3) inset;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+  }
+
+  .symbol {
+    font-size: 19.4vw;
+    height: 1.65em;
+    opacity: 0.7;
+  }
 }
 
-.symbol {
-  font-size: 3em;
-  height: 1.5em;
-  opacity: 0.6;
+@media only screen and (min-width: 361px) and (max-width: 600px) {
+  .reel {
+    display: block;
+    width: 25vw;
+    height: 40vh;
+    background-color: #3a3a3a;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 0 10px;
+    box-shadow: 0px 14px 15px -5px rgba(0, 0, 0, 0.3) inset,
+      1px -14px 15px -5px rgba(0, 0, 0, 0.3) inset;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+  }
+
+  .symbol {
+    font-size: 8vh;
+    height: 1.65em;
+    opacity: 0.7;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .reel {
+    display: block;
+    width: 191px;
+    height: 310px;
+    background-color: #3a3a3a;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 0 10px;
+    box-shadow: 0px 14px 15px -5px rgba(0, 0, 0, 0.3) inset,
+      1px -14px 15px -5px rgba(0, 0, 0, 0.3) inset;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+  }
+
+  .symbol {
+    font-size: 4em;
+    height: 1.65em;
+    opacity: 0.7;
+  }
 }
 
 .symbol img {
@@ -70,12 +116,25 @@ body {
 }
 
 .header h1 {
+  display: inline-flex;
   font-family: "Ultra", serif;
-  font-size: 6em;
+  font-size: 11vw;
   line-height: .9;
   margin: 0;
   color: #ebb701;
   max-width: 10ch;
+}
+
+@media screen and (min-width: 800px) {
+  .header h1 {
+    display: inline-flex;
+    font-family: "Ultra", serif;
+    font-size: 6em;
+    line-height: .9;
+    margin: 0;
+    color: #ebb701;
+    max-width: 10ch;
+  }
 }
 
 .header p {

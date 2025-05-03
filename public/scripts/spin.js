@@ -5,12 +5,14 @@ const messageDisplay = document.querySelector(".message");
 const APIKEY = "?api-key=candy";
 const SERVICEURL = "http://localhost:3000/api";
 
+let myID = "";
 let symboles = "";
 let reelStates = [];
 
-let responseState = ["3️⃣", "3️⃣", "3️⃣"]
+let responseState = "";
 
 getSymboles();
+register();
 
 let spinning = false;
 
@@ -18,6 +20,7 @@ spinButton.addEventListener("click", spinReels);
 
 function spinReels() {
     if (spinning) return;
+    askServer();
     spinning = true;
     messageDisplay.textContent = "Spinning.........";
     reels.forEach((reel, index) => {
@@ -64,16 +67,57 @@ function spinReel(reel, index) {
 }
 
 function checkWin() {
-    const [reel1, reel2, reel3] = reelStates.map((reel) => reel[0]);
-    const [reel4, reel5, reel6] = reelStates.map((reel) => reel[1]);
+    const [reel1, reel2, reel3] = reelStates.map((reel) => reel[1]);
 
     if (
-        (reel1 === reel2 && reel2 === reel3) ||
-        (reel4 === reel5 && reel5 === reel6)
+        (reel1 === reel2 && reel2 === reel3)
     ) {
-        messageDisplay.textContent = "Winner";
+        messageDisplay.textContent = "Gewinner";
     } else {
-        messageDisplay.textContent = "Try Again";
+        messageDisplay.textContent = "Probier's nochmal";
+    }
+}
+
+function askServer() {
+    let requestURL = SERVICEURL + "/spin" + APIKEY;
+    fetch(requestURL, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ id: myID }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data) {
+                console.log(data);
+                responseState = data;
+            }
+        });
+}
+
+function register() {
+    myID = Cookies.get('myID');
+    if (!myID) {
+        let requestURL = SERVICEURL + "/register" + APIKEY;
+        fetch(requestURL, {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    myID = data.id;
+                    Cookies.set('myID', myID);
+                    console.log("My ID from Server: " + myID);
+                }
+            });
+    } else {
+        console.log("My ID from Coockies: " + myID);
+        let requestURL = SERVICEURL + "/confirm" + APIKEY;
+        fetch(requestURL, {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({ id: myID }),
+        });
     }
 }
 
@@ -85,7 +129,6 @@ function getSymboles() {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
             if (data) {
                 symboles = data.symboles;
                 reelStates.push(symboles.slice());

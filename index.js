@@ -73,17 +73,17 @@ var data = {
   candy: {
     snickers: {
       name: "snickers",
-      quantity: 16,
+      quantity: 8,
       symbole: "/imgs/1.png"
     },
     mars: {
       name: "mars",
-      quantity: 16,
+      quantity: 8,
       symbole: "/imgs/2.png"
     },
     kitkat: {
       name: "kitkat",
-      quantity: 16,
+      quantity: 8,
       symbole: "/imgs/3.png"
     },
   },

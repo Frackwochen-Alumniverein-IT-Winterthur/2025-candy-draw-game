@@ -68,7 +68,7 @@ var data = {
   symbols: ["/imgs/1.png", "🍒", "🔔", "🍋", "🍉",
     "/imgs/3.png", "⭐", "7️⃣", "🍊", "/imgs/2.png", "🍓", "🍈", "🍍"],
   nonWinners: ["🍒", "🔔", "🍋", "🍉", "⭐", "7️⃣", "🍊", "🍓", "🍈", "🍍"],
-  baseWinRate: 50,
+  baseWinRate: 40,
   players: {},
   candy: {
     snickers: {

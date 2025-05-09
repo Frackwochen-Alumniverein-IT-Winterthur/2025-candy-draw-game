@@ -5,12 +5,35 @@
 
 
 body {
-  background: #121212;
+  background: #252525;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   font-family: "DM Mono", monospace;
+}
+
+dialog {
+  padding: 7;
+  border: 2px solid #7100CE;
+  background: #3a3a3a;
+  border-radius: 0.5rem;
+  text-align: center;
+  max-width: 87%;
+  transform: scale(0);
+  transition:
+    transform 0.2s ease-out,
+    display 0.2s ease-out allow-discrete;
+}
+
+dialog:open {
+  transform: scale(1)
+}
+
+@starting-style {
+  dialog:open {
+    transform: scale(0);
+  }
 }
 
 .slot-machine {
@@ -33,9 +56,9 @@ body {
     border-radius: 15px;
     overflow: hidden;
     margin: 0 10px;
-    box-shadow: 0px 14px 15px -5px rgba(0, 0, 0, 0.3) inset,
-      1px -14px 15px -5px rgba(0, 0, 0, 0.3) inset;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 14px 15px -5px #0000004d inset,
+      1px -14px 15px -5px #0000004d inset;
+    border: 2px solid #7100CE;
     position: relative;
   }
 
@@ -55,9 +78,9 @@ body {
     border-radius: 15px;
     overflow: hidden;
     margin: 0 10px;
-    box-shadow: 0px 14px 15px -5px rgba(0, 0, 0, 0.3) inset,
-      1px -14px 15px -5px rgba(0, 0, 0, 0.3) inset;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 14px 15px -5px #0000004d inset,
+      1px -14px 15px -5px #0000004d inset;
+    border: 2px solid #7100CE;
     position: relative;
   }
 
@@ -77,9 +100,9 @@ body {
     border-radius: 15px;
     overflow: hidden;
     margin: 0 10px;
-    box-shadow: 0px 14px 15px -5px rgba(0, 0, 0, 0.3) inset,
-      1px -14px 15px -5px rgba(0, 0, 0, 0.3) inset;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 14px 15px -5px #0000004d inset,
+      1px -14px 15px -5px #0000004d inset;
+    border: 2px solid #7100CE;
     position: relative;
   }
 
@@ -100,14 +123,9 @@ body {
   margin: 3em 0 1em 0;
 }
 
-.button-3:active {
-  background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
-}
-
 .controls .message {
   font-size: 1.5em;
-  color: #ebb701;
+  color: #7100CE;
 }
 
 .header {
@@ -121,7 +139,7 @@ body {
   font-size: 11vw;
   line-height: .9;
   margin: 0;
-  color: #ebb701;
+  color: #7100CE;
   max-width: 10ch;
 }
 
@@ -132,7 +150,7 @@ body {
     font-size: 6em;
     line-height: .9;
     margin: 0;
-    color: #ebb701;
+    color: #7100CE;
     max-width: 10ch;
   }
 }
@@ -140,5 +158,10 @@ body {
 .header p {
   font-size: 1.2em;
   margin-top: 10px;
-  color: white;
+  color: #7100CE;
+}
+
+#bigpicImg {
+  max-width: 100%;
+  height: auto;
 }

@@ -5,8 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Frackumzug Guezli-Spiel</title>
-  <link rel="stylesheet" href="styles/styles.css" />
-  <link rel="stylesheet" href="styles/fireworks.css" />
+  <link rel="stylesheet" href="styles/styles.css" />>
   <link rel="stylesheet" href="styles/button.css" />
 </head>
 
@@ -35,8 +34,13 @@
     <div class="controls">
       <button class="btn btn-primary spin_btn button-pretty" role="button">SPIN</button>
       <p class="message">Viel Glück!</p>
+      <button class="btn btn-primary show_btn button-pretty" role="button" style="display:none">Vorzeigen</button>
     </div>
   </div>
+  <dialog closedby="any" id="imageModal">
+    <div id="bigpic"></div>
+    <button class="btn btn-primary close_btn button-pretty" id="close-bigpic">Close</button>
+  </dialog>
   <script type="module" src="scripts/spin.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js">
   </script>

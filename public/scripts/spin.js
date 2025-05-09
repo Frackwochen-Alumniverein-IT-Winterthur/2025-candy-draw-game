@@ -1,6 +1,8 @@
 const reels = document.querySelectorAll(".reel");
 const spinButton = document.querySelector(".spin_btn");
 const messageDisplay = document.querySelector(".message");
+const showButton = document.querySelector(".show_btn");
+const closeButton = document.getElementById("close-bigpic");
 
 const APIKEY = "?api-key=candy";
 const SERVICEURL = "http://localhost:3000/api";
@@ -14,12 +16,20 @@ let responseState = "";
 getSymboles();
 register();
 
-let spinning = false;
+showButton.addEventListener("click", () => {
+    document.getElementById("imageModal").showModal();
+})
 
+closeButton.addEventListener("click", () => {
+    closeButton.parentElement.close();
+});
+
+let spinning = false;
 spinButton.addEventListener("click", spinReels);
 
 function spinReels() {
     if (spinning) return;
+    showButton.style.display = "none";
     askServer();
     spinning = true;
     messageDisplay.textContent = "Spinning.........";
@@ -72,7 +82,18 @@ function checkWin() {
     if (
         (reel1 === reel2 && reel2 === reel3)
     ) {
-        messageDisplay.textContent = "Gewinner - Zeig dein Bildshirm dem Frackmobilmeister!";
+        var elem = document.createElement("img");
+        elem.id = 'bigpicImg'
+        elem.src = reel1;
+        var bigpicDiv = document.getElementById("bigpic");
+        var child = document.getElementById("bigpicImg");
+        if (child) bigpicDiv.removeChild(child);
+        bigpicDiv.appendChild(elem);
+        setTimeout(() => {
+            messageDisplay.textContent = "Gewinner - Zeig dein Bildshirm dem Frackmobilmeister!";
+            showButton.style.display = "inline-block";
+            document.getElementById("imageModal").showModal();
+        }, 400)
     } else {
         messageDisplay.textContent = "Probier's nochmal";
     }

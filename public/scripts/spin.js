@@ -5,7 +5,7 @@ const showButton = document.querySelector(".show_btn");
 const closeButton = document.getElementById("close-bigpic");
 
 const APIKEY = "?api-key=candy";
-const SERVICEURL = "http://localhost:3000/api";
+const SERVICEURL = "/api";
 
 let myID = "";
 let symboles = "";

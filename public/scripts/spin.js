@@ -8,12 +8,12 @@ const APIKEY = "?api-key=candy";
 const SERVICEURL = "/api";
 
 let myID = "";
-let symboles = "";
+let symbols = "";
 let reelStates = [];
 
 let responseState = "";
 
-getSymboles();
+getSymbols();
 register();
 
 showButton.addEventListener("click", () => {
@@ -34,7 +34,7 @@ function spinReels() {
     spinning = true;
     messageDisplay.textContent = "Spinning.........";
     reels.forEach((reel, index) => {
-        reelStates[index] = symboles.slice()
+        reelStates[index] = symbols.slice()
         setTimeout(() => {
             spinReel(reel, index);
         }, index * 500);
@@ -127,7 +127,7 @@ function register() {
             .then((data) => {
                 if (data) {
                     myID = data.id;
-                    Cookies.set('myID', myID);
+                    Cookies.set('myID', myID, { sameSite: 'strict', expires: 2 });
                     console.log("My ID from Server: " + myID);
                 }
             });
@@ -142,8 +142,8 @@ function register() {
     }
 }
 
-function getSymboles() {
-    let requestURL = SERVICEURL + "/symboles" + APIKEY;
+function getSymbols() {
+    let requestURL = SERVICEURL + "/symbols" + APIKEY;
     fetch(requestURL, {
         method: "GET",
         headers: { "Content-type": "application/json" },
@@ -151,10 +151,10 @@ function getSymboles() {
         .then((response) => response.json())
         .then((data) => {
             if (data) {
-                symboles = data.symboles;
-                reelStates.push(symboles.slice());
-                reelStates.push(symboles.slice());
-                reelStates.push(symboles.slice());
+                symbols = data.symbols;
+                reelStates.push(symbols.slice());
+                reelStates.push(symbols.slice());
+                reelStates.push(symbols.slice());
             }
         });
 }

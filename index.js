@@ -68,23 +68,23 @@ var data = {
   symbols: ["/imgs/1.png", "🍒", "🔔", "🍋", "🍉",
     "/imgs/3.png", "⭐", "7️⃣", "🍊", "/imgs/2.png", "🍓", "🍈", "🍍"],
   nonWinners: ["🍒", "🔔", "🍋", "🍉", "⭐", "7️⃣", "🍊", "🍓", "🍈", "🍍"],
-  baseWinRate: 40,
+  baseWinRate: 15,
   players: {},
   candy: {
     snickers: {
       name: "snickers",
       quantity: 8,
-      symbole: "/imgs/1.png"
+      symbol: "/imgs/1.png"
     },
     mars: {
       name: "mars",
       quantity: 8,
-      symbole: "/imgs/2.png"
+      symbol: "/imgs/2.png"
     },
     kitkat: {
       name: "kitkat",
       quantity: 8,
-      symbole: "/imgs/3.png"
+      symbol: "/imgs/3.png"
     },
   },
 };
@@ -99,8 +99,8 @@ app.get("/api/players", function (req, res, next) {
   res.send({ players: data.players });
 });
 
-app.get("/api/symboles", function (req, res, next) {
-  res.send({ symboles: data.symbols });
+app.get("/api/symbols", function (req, res, next) {
+  res.send({ symbols: data.symbols });
 });
 
 
@@ -132,7 +132,7 @@ app.post("/api/spin", function (req, res, next) {
   let draw = Math.floor(Math.random() * (100 - 1 + 1) + 1);
 
   if (draw < winRate && candiesLeft) {
-    result = Array(3).fill(candies[0].symbole);
+    result = Array(3).fill(candies[0].symbol);
     data.candy[candies[0].name].quantity -= 1;
     data.players[id].nWins += 1;
   } else {

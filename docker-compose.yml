@@ -13,10 +13,6 @@ services:
       # Prevent overwriting node_modules inside the container
       - /usr/src/app/node_modules
 
-    # Map host port 3000 to container port 3000
-    ports:
-      - "3000:3000"
-
     # Set environment variables
     environment:
       NODE_ENV: development

@@ -29,3 +29,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
+          tags: ghcr.io/frackwochen-alumniverein-it-winterthur/2025-candy-draw-game

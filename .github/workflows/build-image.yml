@@ -28,5 +28,4 @@ jobs:
         with:
           context: .
           file: Dockerfile
-          push: false  # Set to true if you want to push the image
-          tags: gtags: ghcr.io/${{ github.repository_owner | toLower }}/${{ github.event.repository.name | toLower }}:latest
+          push: true
